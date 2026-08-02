@@ -206,6 +206,24 @@
     testimonials.before(section);
   };
 
+  const enableOptionalPortrait = () => {
+    const portrait = document.querySelector('.portrait');
+    const initials = portrait?.querySelector('.portrait-initials');
+    if (!portrait) return;
+
+    const image = new Image();
+    image.className = 'portrait-photo';
+    image.alt = 'Profa. Dra. Elidamar Nunes de Carvalho Lima';
+    image.decoding = 'async';
+    image.loading = 'lazy';
+    image.src = 'assets/photos/elidamar.webp';
+    image.addEventListener('load', () => {
+      portrait.prepend(image);
+      portrait.classList.add('has-photo');
+      if (initials) initials.hidden = true;
+    });
+  };
+
   const setupObserver = () => {
     const observer = 'IntersectionObserver' in window
       ? new IntersectionObserver((entries) => {
@@ -257,6 +275,7 @@
   improveCourseFlow();
   improveBiography();
   addEvidenceSection();
+  enableOptionalPortrait();
   setupObserver();
 
   const year = document.querySelector('#current-year');
