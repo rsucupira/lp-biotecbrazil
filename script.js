@@ -1,8 +1,11 @@
 (() => {
   const CONFIG = {
     whatsapp: '5511978512581',
+    phoneDisplay: '+55 (11) 97851-2581',
     siteUrl: 'https://rsucupira.github.io/lp-biotecbrazil/',
-    companyName: 'BiotecBrazil – NanoBiotech Solutions'
+    companyName: 'BiotecBrazil – NanoBiotech Solutions',
+    legalName: 'BIOTEC CONSULTORIA EM BIOTECNLOGIA LTDA',
+    cnpj: '38.383.562/0001-34'
   };
 
   const header = document.querySelector('.site-header');
@@ -49,15 +52,24 @@
           '@type': 'Organization',
           '@id': `${CONFIG.siteUrl}#organization`,
           name: CONFIG.companyName,
+          legalName: CONFIG.legalName,
+          taxID: CONFIG.cnpj,
           alternateName: 'BiotecBrazil',
           url: CONFIG.siteUrl,
           email: 'contato@biotecbrazil.com.br',
+          telephone: CONFIG.phoneDisplay,
           sameAs: [
             'https://www.instagram.com/biotecbrazil/',
             'https://www.linkedin.com/company/biotecbrazil/'
           ],
           areaServed: 'BR',
-          knowsAbout: ['Biotecnologia', 'Nanobiotecnologia', 'Biorremediação', 'Engenharia genética', 'Assessoria científica']
+          knowsAbout: [
+            'Biotecnologia',
+            'Nanobiotecnologia',
+            'Biorremediação',
+            'Engenharia genética',
+            'Assessoria científica'
+          ]
         },
         {
           '@type': 'Person',
@@ -128,7 +140,10 @@
       link.textContent = 'Entrar na lista de interesse →';
       link.setAttribute('aria-label', `Entrar na lista de interesse do curso ${title}`);
       link.addEventListener('click', () => {
-        preselectInterest('Curso ou formação', `Tenho interesse no curso “${title}” e gostaria de receber informações sobre a próxima turma.`);
+        preselectInterest(
+          'Curso ou formação',
+          `Tenho interesse no curso “${title}” e gostaria de receber informações sobre a próxima turma.`
+        );
       });
     });
 
@@ -152,15 +167,68 @@
     }
 
     const qualifications = document.querySelectorAll('#sobre .qualification > div');
-    if (qualifications[0]) qualifications[0].innerHTML = '<strong>Doutorado</strong><span>Ciências • Infectologia, UNIFESP</span>';
-    if (qualifications[1]) qualifications[1].innerHTML = '<strong>Pós-doutorado</strong><span>Escola Politécnica da USP</span>';
-    if (qualifications[2]) qualifications[2].innerHTML = '<strong>Atuação</strong><span>Ensino, pesquisa e inovação</span>';
+    if (qualifications[0]) {
+      qualifications[0].innerHTML = '<strong>Doutorado</strong><span>Ciências • Infectologia, UNIFESP</span>';
+    }
+    if (qualifications[1]) {
+      qualifications[1].innerHTML = '<strong>Pós-doutorado</strong><span>Escola Politécnica da USP</span>';
+    }
+    if (qualifications[2]) {
+      qualifications[2].innerHTML = '<strong>Atuação</strong><span>Ensino, pesquisa e inovação</span>';
+    }
 
     const trajectoryLink = document.querySelector('#sobre .text-link');
     if (trajectoryLink) {
       trajectoryLink.href = 'https://www.poli.usp.br/noticias/biologa-encontra-solucoes-para-desafios-na-saude-por-meio-da-engenharia/';
       trajectoryLink.textContent = 'Conhecer a trajetória na POLI-USP ↗';
     }
+  };
+
+  const addInstitutionalHistory = () => {
+    if (document.querySelector('#historico')) return;
+    const about = document.querySelector('#sobre');
+    if (!about) return;
+
+    const section = document.createElement('section');
+    section.className = 'section history-section section-soft';
+    section.id = 'historico';
+    section.innerHTML = `
+      <div class="container">
+        <div class="section-heading heading-row reveal">
+          <div>
+            <p class="eyebrow">Histórico institucional</p>
+            <h2>Conexões com universidades, eventos e comunidades de biotecnologia.</h2>
+          </div>
+          <p>A trajetória pública da BiotecBrazil inclui participação, apoio e divulgação de iniciativas acadêmicas e científicas. Os registros abaixo são históricos e podem ser consultados no site institucional.</p>
+        </div>
+        <div class="history-grid">
+          <article class="history-card reveal">
+            <span>Biotec Days</span>
+            <h3>LiNA Biotec São Carlos</h3>
+            <p>Participação em programação voltada à biotecnologia, incluindo palestra sobre biorremediação e controle de contaminantes.</p>
+          </article>
+          <article class="history-card reveal">
+            <span>UFSCar</span>
+            <h3>FourBiotec</h3>
+            <p>Apoio divulgado a encontro universitário conectado à formação, inovação e comunidade biotecnológica.</p>
+          </article>
+          <article class="history-card reveal">
+            <span>USP</span>
+            <h3>ENECINA e CONCINAT</h3>
+            <p>Registro de participação em iniciativas acadêmicas ligadas às ciências naturais e à formação universitária.</p>
+          </article>
+          <article class="history-card reveal">
+            <span>UNIFESP</span>
+            <h3>Integra Biotec</h3>
+            <p>Histórico de apoio divulgado a evento universitário dedicado à integração e ao desenvolvimento em biotecnologia.</p>
+          </article>
+        </div>
+        <div class="history-action reveal">
+          <p>Os registros são apresentados como histórico institucional, sem sugerir vínculo atual ou endosso comercial das instituições citadas.</p>
+          <a class="button button-secondary" href="https://biotecbrazil.com.br/parcerias-eventos/" target="_blank" rel="noopener">Consultar registros históricos ↗</a>
+        </div>
+      </div>`;
+    about.before(section);
   };
 
   const addEvidenceSection = () => {
@@ -211,17 +279,51 @@
     const initials = portrait?.querySelector('.portrait-initials');
     if (!portrait) return;
 
+    const sources = [
+      'assets/photos/elidamar.webp',
+      'https://biotecbrazil.com.br/wp-content/uploads/2022/05/elidamar-1.png'
+    ];
+    let sourceIndex = 0;
     const image = new Image();
     image.className = 'portrait-photo';
     image.alt = 'Profa. Dra. Elidamar Nunes de Carvalho Lima';
     image.decoding = 'async';
     image.loading = 'lazy';
-    image.src = 'assets/photos/elidamar.webp';
+
     image.addEventListener('load', () => {
       portrait.prepend(image);
       portrait.classList.add('has-photo');
       if (initials) initials.hidden = true;
     });
+
+    image.addEventListener('error', () => {
+      sourceIndex += 1;
+      if (sourceIndex < sources.length) image.src = sources[sourceIndex];
+    });
+
+    image.src = sources[sourceIndex];
+  };
+
+  const improveContactForm = () => {
+    if (!form || form.querySelector('[name="phone"]')) return;
+    const fieldRow = form.querySelector('.field-row');
+    if (!fieldRow) return;
+
+    const phoneLabel = document.createElement('label');
+    phoneLabel.className = 'phone-field';
+    phoneLabel.innerHTML = `Telefone ou WhatsApp
+      <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(DDD) número">`;
+    fieldRow.after(phoneLabel);
+  };
+
+  const addLegalFooter = () => {
+    const footerBottom = document.querySelector('.footer-bottom');
+    if (!footerBottom || footerBottom.querySelector('.legal-id')) return;
+
+    const legal = document.createElement('p');
+    legal.className = 'legal-id';
+    legal.textContent = `${CONFIG.legalName} • CNPJ ${CONFIG.cnpj}`;
+    footerBottom.insertBefore(legal, footerBottom.lastElementChild);
   };
 
   const setupObserver = () => {
@@ -250,6 +352,7 @@
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
+    const phone = String(data.get('phone') || '').trim();
     const interest = String(data.get('interest') || '').trim();
     const message = String(data.get('message') || '').trim();
 
@@ -258,24 +361,30 @@
       '',
       `Meu nome é ${name}.`,
       `E-mail: ${email}`,
+      phone ? `Telefone: ${phone}` : null,
       `Interesse: ${interest}`,
       '',
       'Mensagem:',
       message,
       '',
       'Contato enviado pela landing page da BiotecBrazil.'
-    ].join('\n');
+    ].filter(Boolean).join('\n');
 
     const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
     if (formNote) formNote.textContent = 'Abrindo o WhatsApp com sua mensagem...';
-    window.open(url, '_blank', 'noopener,noreferrer');
+
+    const popup = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!popup) window.location.href = url;
   });
 
   addHeadEnhancements();
   improveCourseFlow();
   improveBiography();
+  addInstitutionalHistory();
   addEvidenceSection();
   enableOptionalPortrait();
+  improveContactForm();
+  addLegalFooter();
   setupObserver();
 
   const year = document.querySelector('#current-year');
