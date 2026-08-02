@@ -1,0 +1,19 @@
+{
+  "name": "BiotecBrazil – NanoBiotech Solutions",
+  "short_name": "BiotecBrazil",
+  "description": "Cursos, assessoria científica e soluções em biotecnologia.",
+  "lang": "pt-BR",
+  "start_url": "/lp-biotecbrazil/",
+  "scope": "/lp-biotecbrazil/",
+  "display": "standalone",
+  "background_color": "#062f36",
+  "theme_color": "#062f36",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
