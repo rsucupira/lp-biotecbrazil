@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#062f36"/><stop offset="1" stop-color="#0e5b61"/></linearGradient>
+    <linearGradient id="dna" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70ddc0"/><stop offset="1" stop-color="#dfff91"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#fff"><path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/><path d="M100 0v630M200 0v630M300 0v630M400 0v630M500 0v630M600 0v630M700 0v630M800 0v630M900 0v630M1000 0v630M1100 0v630"/></g>
+  <g transform="translate(810 80)" fill="none" stroke-linecap="round">
+    <path d="M52 20c270 135 70 280 270 410" stroke="#70ddc0" stroke-width="20"/>
+    <path d="M322 20C52 155 252 300 52 430" stroke="#dfff91" stroke-width="20"/>
+    <path d="M90 65h195M62 125h250M57 190h260M62 255h250M74 320h225M92 380h190" stroke="#fff" stroke-width="9" opacity=".75"/>
+  </g>
+  <text x="80" y="130" fill="#70ddc0" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5">BIOTECBRAZIL</text>
+  <text x="80" y="255" fill="#fff" font-family="Arial,sans-serif" font-size="66" font-weight="800">Ciência aplicada para</text>
+  <text x="80" y="335" fill="#dfff91" font-family="Arial,sans-serif" font-size="66" font-weight="800">gerar resultados.</text>
+  <text x="80" y="420" fill="#cbe3df" font-family="Arial,sans-serif" font-size="28">Cursos • Assessoria científica • Soluções para empresas</text>
+</svg>
